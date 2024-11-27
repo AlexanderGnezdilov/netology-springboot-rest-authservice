@@ -1,5 +1,6 @@
 package ru.netology.authservice.exception;
 
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,13 +17,12 @@ public class ExceptionHandlerAdvice {
                 HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(UnauthorizedUser.class)
-    public ResponseEntity<String> unauthorizedUserHandler(UnauthorizedUser e) {
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<String> constraintViolationHandler(ConstraintViolationException e) {
         System.out.println(e.getMessage());
-        e.printStackTrace();
         return new ResponseEntity<>(
-                "UnauthorizedUser Exception in AuthorizationService.getAuthorities() method.\n Exception message: "
+                "ConstraintViolation Exception in AuthorizationService.getAuthorities() method.\n Exception message: "
                         + e.getMessage(),
-                HttpStatus.UNAUTHORIZED);
+                HttpStatus.BAD_REQUEST);
     }
 }
