@@ -3,6 +3,15 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+/nginx/*
+/nginx/conf/*
+!/nginx/conf
+!/nginx/conf/nginx.conf
+!/nginx/html
+!/nginx/html/*
+!/nginx/html/signing
+!/nginx/html/signing/*
+
 mvnw
 mvnw.cmd
 
